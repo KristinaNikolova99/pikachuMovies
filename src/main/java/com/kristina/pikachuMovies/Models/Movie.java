@@ -19,7 +19,7 @@ public class Movie {
 	@Column(nullable = false, length = 45)
 	private String director;
 
-	@Column(nullable = false, length = 45)
+	@Column(nullable = false, length = 255)
 	private String description;
 
 	@Column(nullable = false, length = 45)
@@ -27,6 +27,9 @@ public class Movie {
 
 	@Column(nullable = false, length = 45)
 	private int budget;
+	
+	@Column(nullable = true, length = 64)
+	private String photo;
 
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -89,6 +92,15 @@ public class Movie {
 		this.genre = genre;
 	}
 
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	
 	
 	
 }

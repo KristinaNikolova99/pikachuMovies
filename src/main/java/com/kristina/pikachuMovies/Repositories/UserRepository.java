@@ -3,13 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.kristina.pikachuMovies.Repositories;
+
 import com.kristina.pikachuMovies.Models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author KRISI
- */
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    
+
 }
