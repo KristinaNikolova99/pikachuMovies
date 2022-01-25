@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Add Movie</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/shards.min.css">
+    </head>
+    <body>
+        <div class="container my-5">
+            <h2 class="mb-5">New Movie</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="#" th:action="@{/addmovie}" th:object="${movie}" method="post">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="title" class="col-form-label">Title</label>
+                                <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Title">
+                                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="director" class="col-form-label">Director</label>
+                                <input type="text" th:field="*{director}" class="form-control" id="director" placeholder="Director">
+                                <span th:if="${#fields.hasErrors('director')}" th:errors="*{director}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="description" class="col-form-label">Description</label>
+                                <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="Description">
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="language" class="col-form-label">Language</label>
+                                <input type="text" th:field="*{language}" class="form-control" id="language" placeholder="Language">
+                                <span th:if="${#fields.hasErrors('language')}" th:errors="*{language}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="budget" class="col-form-label">Budget</label>
+                                <input type="text" th:field="*{budget}" class="form-control" id="budget" placeholder="Budget">
+                                <span th:if="${#fields.hasErrors('budget')}" th:errors="*{budget}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="genre" class="col-form-label">Genre</label>
+                                <select th:field="*{genre}" class="form-control" id="genre" placeholder="Genre">
+                                    <th:block th:each="gen: ${genres}">
+                                        <option th:text="${gen.name}" th:value="${gen.id}"/>
+                                    </th:block>
+                                </select>
+                                <span th:if="${#fields.hasErrors('genre')}" th:errors="{genre}" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mt-5">
+                                <input type="submit" class="btn btn-primary" value="Add Movie">
+                            </div>
+                        </div>    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
