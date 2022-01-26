@@ -72,7 +72,7 @@ public class MovieController {
 
         movieRepository.save(movie);
         model.addAttribute("movie", movieRepository.findAll());
-        return "redirect:/movie";
+        return "redirect:/movies";
     }
 
     @GetMapping("/movie/delete/{id}")
