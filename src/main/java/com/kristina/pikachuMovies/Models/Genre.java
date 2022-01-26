@@ -12,7 +12,7 @@ public class Genre {
 
 	@Column(nullable = false, unique = true, length = 45)
 	private String name;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -28,7 +28,4 @@ public class Genre {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	
-	
 }
