@@ -26,7 +26,8 @@
 						<div class="form-group col-md-6">
 							<label for="name" class="col-form-label">Genre</label> <input
 								type="text" th:field="*{name}" class="form-control" id="name"
-								placeholder="Genre"> <span
+								placeholder="Genre" required pattern="[A-Za-z]{1,15}"
+								title="Only letters (A-z) are allowed" maxlength="15"> <span
 								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
 								class="text-danger"></span>
 						</div>

@@ -19,7 +19,7 @@ public class Movie {
 	@Column(nullable = false, length = 45)
 	private String director;
 
-	@Column(nullable = false, length = 45)
+	@Column(nullable = false, length = 255)
 	private String description;
 
 	@Column(nullable = false, length = 45)
