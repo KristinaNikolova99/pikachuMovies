@@ -16,6 +16,13 @@
 <link rel="stylesheet" href="../css/shards.min.css">
 </head>
 <body>
+	<div class="container">
+		<h2>Search for movies</h2>
+		<form th:action="@{/movies}" method="get">
+			<input type="keyword" name="searchMovie" id="title" size="50" />
+			<button type="submit" value="Search" />
+		</form>
+	</div>
 	<div th:switch="${movies}" class="container my-5">
 		<div class="row">
 			<div class="col-md-6">

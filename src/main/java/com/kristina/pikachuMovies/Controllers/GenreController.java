@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import javax.validation.Valid;
 
 import com.kristina.pikachuMovies.Models.Genre;
@@ -18,57 +19,55 @@ public class GenreController {
 	@Autowired
 	GenreRepository genreRepository;
 
-	
-    @GetMapping("/genres")
-    public String index(Model model) {
-        model.addAttribute("genres", genreRepository.findAll());
-        return "genre/index";
-    }
-    
-    @GetMapping("/genreform")
-    public String showSignUpForm(Genre genre) {
-        return "genre/add-genre";
-    }
+	@GetMapping("/genres")
+	public String index(Model model) {
+		model.addAttribute("genres", genreRepository.findAll());
+		return "genre/index";
+	}
 
-    @PostMapping("/addgenre")
-    public String addGenre(@Valid Genre genre, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "genre/add-genre";
-        }
+	@GetMapping("/genreform")
+	public String showSignUpForm(Genre genre) {
+		return "genre/add-genre";
+	}
 
-        genreRepository.save(genre);
-        model.addAttribute("genres", genreRepository.findAll());
-        return "redirect:/genres";
-    }
+	@PostMapping("/addgenre")
+	public String addGenre(@Valid Genre genre, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "genre/add-genre";
+		}
 
-    @GetMapping("/genre/edit/{id}")
-    public String showUpdateForm(@PathVariable("id") long id, Model model) {
-    	Genre genre = genreRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid genre Id:" + id));
+		genreRepository.save(genre);
+		model.addAttribute("genres", genreRepository.findAll());
+		return "redirect:/genres";
+	}
 
-        model.addAttribute("genre", genre);
-        return "genre/update-genre";
-    }
+	@GetMapping("/genre/edit/{id}")
+	public String showUpdateForm(@PathVariable("id") long id, Model model) {
+		Genre genre = genreRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid genre Id:" + id));
 
-    @PostMapping("/genre/update/{id}")
-    public String updateGenre(@PathVariable("id") long id, @Valid Genre genre,
-            BindingResult result, Model model) {
-        if (result.hasErrors()) {
-        	genre.setId(id);
-            return "genre/update-genre";
-        }
+		model.addAttribute("genre", genre);
+		return "genre/update-genre";
+	}
 
-        genreRepository.save(genre);
-        model.addAttribute("genres", genreRepository.findAll());
-        return "redirect:/genres";
-    }
+	@PostMapping("/genre/update/{id}")
+	public String updateGenre(@PathVariable("id") long id, @Valid Genre genre, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			genre.setId(id);
+			return "genre/update-genre";
+		}
 
-    @GetMapping("/genre/delete/{id}")
-    public String deleteGenre(@PathVariable("id") long id, Model model) {
-    	Genre genre = genreRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid genre Id:" + id));
-        genreRepository.delete(genre);
-        model.addAttribute("genres", genreRepository.findAll());
-        return "redirect:/genres";
-    }
+		genreRepository.save(genre);
+		model.addAttribute("genres", genreRepository.findAll());
+		return "redirect:/genres";
+	}
+
+	@GetMapping("/genre/delete/{id}")
+	public String deleteGenre(@PathVariable("id") long id, Model model) {
+		Genre genre = genreRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid genre Id:" + id));
+		genreRepository.delete(genre);
+		model.addAttribute("genres", genreRepository.findAll());
+		return "redirect:/genres";
+	}
 }
