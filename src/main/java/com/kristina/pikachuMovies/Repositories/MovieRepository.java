@@ -11,11 +11,6 @@ import com.kristina.pikachuMovies.Models.Movie;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
-	List<Movie> findByTitle(String title);
-
-	List<Movie> findByTitleStartingWith(String title);
-
-	@Query(value = "select * from movies m where m.title like %:keyword% ", nativeQuery = true)
+	@Query(value = "select * from movies m where m.title like %:keyword%", nativeQuery = true)
 	List<Movie> findByKeyword(@Param("keyword") String keyword);
-
 }
